@@ -1,0 +1,6 @@
+flag_riskiest_%,attempts_flagged,final_misses_caught_%,final_miss_rate_in_flagged_%,LR_misses_caught_%,LR_miss_rate_in_flagged_%,random_flags_catch_%
+5,10000,14.9,65.3,13.9,60.9,5
+10,20000,26.8,58.8,25.3,55.4,10
+20,40000,46.6,51.1,44.9,49.3,20
+30,60000,61.9,45.3,60.8,44.4,30
+50,100000,81.0,35.5,80.2,35.2,50

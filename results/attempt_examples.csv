@@ -1,0 +1,13 @@
+weight,pct_prev_best,jump_kg,chance_of_make,example
+197.5,98.75,2.5,0.555,squat 3rd after made 195
+200.0,100.0,5.0,0.645,squat 3rd after made 195
+202.5,101.25,7.5,0.669,squat 3rd after made 195
+205.0,102.49999999999999,10.0,0.657,squat 3rd after made 195
+207.5,103.75000000000001,12.5,0.654,squat 3rd after made 195
+210.0,105.0,15.0,0.642,squat 3rd after made 195
+215.0,107.5,20.0,0.487,squat 3rd after made 195
+130.0,92.85714285714286,-5.0,0.439,bench 3rd after missed 135
+132.5,94.64285714285714,-2.5,0.436,bench 3rd after missed 135
+135.0,96.42857142857143,0.0,0.435,bench 3rd after missed 135
+137.5,98.21428571428571,2.5,0.483,bench 3rd after missed 135
+140.0,100.0,5.0,0.509,bench 3rd after missed 135

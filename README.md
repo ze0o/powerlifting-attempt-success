@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 11 of 15 complete (Imbalance comparison).
+**Status:** stage 12 of 15 complete (Threshold & use cases).
 
 ## Problem statement
 
@@ -53,9 +53,21 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | Decision Tree | 0.50 | 0.765 | 0.612 | 0.289 | 0.555 | 0.380 | 0.793 |
 | Random Forest | 0.50 | 0.775 | 0.612 | 0.282 | 0.578 | 0.379 | 0.797 |
 | **Gradient Boosting** | 0.50 | **0.776** | 0.618 | 0.297 | 0.575 | 0.391 | 0.798 |
+| Gradient Boosting (tuned threshold) | 0.736 | 0.776 | 0.708 | 0.656 | 0.435 | 0.523 | 0.738 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 Class weights, oversampling and SMOTE did not improve ROC-AUC ([06_imbalance_comparison.ipynb](notebooks/06_imbalance_comparison.ipynb)).
+
+## Attempt selection example
+
+A raw 83 kg lifter whose best squat at earlier meets is 200 kg has just made 195 kg on his second attempt:
+
+| Third attempt | 197.5 | 200 | 202.5 | 205 | 210 | 215 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Chance of a make | 56% | 65% | 67% | 66% | 64% | 49% |
+
+The low score for the smallest jump is the model reading "tiny jump" as a sign of a hard second attempt, not advice to lift heavier.
+Details: [notebooks/07_threshold_and_use_cases.ipynb](notebooks/07_threshold_and_use_cases.ipynb)
 
 ## Repository structure
 
@@ -74,13 +86,18 @@ powerlifting-attempt-success/
 │   ├── 03_preprocessing_and_baseline.ipynb
 │   ├── 04_logistic_regression.ipynb
 │   ├── 05_tree_models.ipynb
-│   └── 06_imbalance_comparison.ipynb
+│   ├── 06_imbalance_comparison.ipynb
+│   └── 07_threshold_and_use_cases.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
 │   ├── lr_odds_ratios.csv
 │   ├── best_params.json
-│   └── imbalance_cv.csv
+│   ├── imbalance_cv.csv
+│   ├── threshold.json
+│   ├── risk_flagging.csv
+│   ├── calibration.csv
+│   └── attempt_examples.csv
 ├── src/
 │   ├── clean.py
 │   └── prep.py
@@ -92,6 +109,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 12. Threshold & use cases | 2026-11-03 | `notebooks/07_threshold_and_use_cases.ipynb`: threshold chosen on training data, share of misses caught by flagging the riskiest attempts, predicted vs actual table, `attempt_options()` demo |
 | 11. Imbalance comparison | 2026-11-03 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTE |
 | 10. Tree models | 2026-11-03 | `notebooks/05_tree_models.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters, overfitting check |
 | 9. Logistic Regression | 2026-11-03 | `notebooks/04_logistic_regression.ipynb`: GridSearchCV on C, odds ratios |
@@ -104,7 +122,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 12: threshold & use cases.
+**Next:** stage 13: explainability.
 
 ## How to run
 
