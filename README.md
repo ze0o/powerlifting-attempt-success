@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 7 of 15 complete (Course fit & limitations).
+**Status:** stage 8 of 15 complete (Preprocessing pipeline & baseline).
 
 ## Problem statement
 
@@ -44,6 +44,14 @@ Full details: [docs/01_problem_statement.md](docs/01_problem_statement.md)
 
 Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 
+## Model results (test set: 200,000 attempts from meets in 2024–2026)
+
+| model | threshold | roc auc | balanced accuracy | recall (missed) | precision (missed) | f1 (missed) | accuracy |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Baseline (always made) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.781 |
+
+ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
+
 ## Repository structure
 
 ```text
@@ -57,9 +65,13 @@ powerlifting-attempt-success/
 │   └── 04_course_fit_and_limitations.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
-│   └── 02_eda.ipynb
+│   ├── 02_eda.ipynb
+│   └── 03_preprocessing_and_baseline.ipynb
+├── results/
+│   └── metrics.csv
 ├── src/
-│   └── clean.py
+│   ├── clean.py
+│   └── prep.py
 ├── requirements.txt
 └── README.md
 ```
@@ -68,6 +80,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 8. Preprocessing pipeline & baseline | 2026-11-03 | `src/prep.py` (date split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline, random vs date split check |
 | 7. Course fit & limitations | 2026-11-03 | `docs/04_course_fit_and_limitations.md`: Lightning Talk checklist, scope vs the course, limitations, open questions |
 | 6. Preprocessing plan | 2026-11-03 | `docs/03_preprocessing_plan.md`: fixed rules, imputing, bins, encoding, scaling, split, imbalance |
 | 5. Target & features | 2026-11-03 | `docs/02_target_and_features.md`: target choice, leakage decisions, engineered history features |
@@ -76,7 +89,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 8: preprocessing pipeline & baseline.
+**Next:** stage 9: logistic regression.
 
 ## How to run
 
@@ -87,4 +100,6 @@ jupyter notebook notebooks/
 
 Put `openpowerlifting.csv` in `data/`, or keep it in `../Data/openpowerlifting-2026-10-17/` (see [data/README.md](data/README.md)).
 Run the notebooks in order. The first one that loads the attempts builds `data/attempts_ipf.pkl` (about 2 minutes and 5 GB of RAM);
-after that each load takes seconds.
+after that each load takes seconds. Notebooks 03–08 share the split and preprocessing in `src/prep.py` and write their results
+to `results/`. Notebook 05 takes about 30 minutes (mostly the Gradient Boosting search) and notebook 07 about 13 minutes on a
+2-core machine; the others take 1–3 minutes each.

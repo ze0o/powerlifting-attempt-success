@@ -1,0 +1,2 @@
+model,threshold,accuracy,balanced_accuracy,precision_made,recall_made,precision_missed,recall_missed,f1_missed,roc_auc
+Baseline (always made),0.5,0.7807,0.5,0.7807,1.0,0.0,0.0,0.0,0.5
