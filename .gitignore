@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (too big for git, see data/README.md)
+data/*.csv
+data/*.pkl
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
