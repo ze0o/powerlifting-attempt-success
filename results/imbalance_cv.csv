@@ -1,0 +1,8 @@
+model,imbalance_method,roc_auc,balanced_accuracy,recall_missed,precision_missed,f1_missed
+Logistic Regression,none,0.7625,0.6092,0.2862,0.5909,0.3856
+Logistic Regression,class_weight,0.7628,0.702,0.6937,0.4505,0.5462
+Logistic Regression,RandomOverSampler,0.7627,0.7021,0.6947,0.4502,0.5463
+Logistic Regression,SMOTE,0.7614,0.701,0.6866,0.4523,0.5453
+Random Forest,none,0.7694,0.6198,0.3124,0.5947,0.4096
+Random Forest,class_weight,0.7692,0.7036,0.6908,0.4547,0.5484
+Random Forest,RandomOverSampler,0.768,0.7021,0.6781,0.4588,0.5473

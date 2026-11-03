@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 10 of 15 complete (Tree models).
+**Status:** stage 11 of 15 complete (Imbalance comparison).
 
 ## Problem statement
 
@@ -55,6 +55,7 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | **Gradient Boosting** | 0.50 | **0.776** | 0.618 | 0.297 | 0.575 | 0.391 | 0.798 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
+Class weights, oversampling and SMOTE did not improve ROC-AUC ([06_imbalance_comparison.ipynb](notebooks/06_imbalance_comparison.ipynb)).
 
 ## Repository structure
 
@@ -72,12 +73,14 @@ powerlifting-attempt-success/
 │   ├── 02_eda.ipynb
 │   ├── 03_preprocessing_and_baseline.ipynb
 │   ├── 04_logistic_regression.ipynb
-│   └── 05_tree_models.ipynb
+│   ├── 05_tree_models.ipynb
+│   └── 06_imbalance_comparison.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
 │   ├── lr_odds_ratios.csv
-│   └── best_params.json
+│   ├── best_params.json
+│   └── imbalance_cv.csv
 ├── src/
 │   ├── clean.py
 │   └── prep.py
@@ -89,6 +92,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 11. Imbalance comparison | 2026-11-03 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTE |
 | 10. Tree models | 2026-11-03 | `notebooks/05_tree_models.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters, overfitting check |
 | 9. Logistic Regression | 2026-11-03 | `notebooks/04_logistic_regression.ipynb`: GridSearchCV on C, odds ratios |
 | 8. Preprocessing pipeline & baseline | 2026-11-03 | `src/prep.py` (date split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline, random vs date split check |
@@ -100,7 +104,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 11: imbalance comparison.
+**Next:** stage 12: threshold & use cases.
 
 ## How to run
 
