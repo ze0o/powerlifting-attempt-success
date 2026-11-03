@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 14 of 15 complete (Results & recommendations).
+**Status:** stage 15 of 15 complete (Presentation slides). Project complete.
 
 > **Headline result:** the Gradient Boosting model (ROC-AUC 0.776 on meets from 2024 onward, trained on earlier meets) gives
 > **trustworthy probabilities**: attempts it scores 70–80% were made 76.2% of the time. Flagging the **riskiest 20%** of attempts
@@ -109,6 +109,8 @@ powerlifting-attempt-success/
 │   ├── 06_imbalance_comparison.ipynb
 │   ├── 07_threshold_and_use_cases.ipynb
 │   └── 08_explainability.ipynb
+├── presentation/
+│   └── README.md            (slide outline; the .pptx is exported from the deck)
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
@@ -131,6 +133,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 15. Presentation slides | 2026-11-03 | 16-slide capstone deck with speaker notes; `presentation/README.md`: slide outline and the numbers on each slide |
 | 14. Results & recommendations | 2026-11-03 | `docs/05_results_and_recommendations.md`: final model, model comparison, value for evaluators, drivers, recommendations, limitations, next steps |
 | 13. Explainability | 2026-11-03 | `notebooks/08_explainability.ipynb`: feature importance, partial dependence (numeric and categorical), SHAP with `TreeExplainer`, one attempt explained |
 | 12. Threshold & use cases | 2026-11-03 | `notebooks/07_threshold_and_use_cases.ipynb`: threshold chosen on training data, share of misses caught by flagging the riskiest attempts, predicted vs actual table, `attempt_options()` demo |
@@ -146,7 +149,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 15: presentation slides.
+**Next:** project complete. Possible follow-up: the computer-vision judging aid (squat depth and lockout from video).
 
 ## How to run
 
