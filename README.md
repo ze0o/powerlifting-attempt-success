@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 12 of 15 complete (Threshold & use cases).
+**Status:** stage 13 of 15 complete (Explainability).
 
 ## Problem statement
 
@@ -58,6 +58,20 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 Class weights, oversampling and SMOTE did not improve ROC-AUC ([06_imbalance_comparison.ipynb](notebooks/06_imbalance_comparison.ipynb)).
 
+## What drives a made attempt (feature importance + partial dependence + SHAP)
+
+| Rank | Driver | Effect, everything else unchanged |
+| --- | --- | --- |
+| 1 | Attempt number | 52% of importance; third attempts odds × 0.42 vs openers |
+| 2 | Jump size | 4–8% jumps score best (0.68); no or tiny jumps lowest (0.61) |
+| 3 | Lift | deadlift 0.76, squat 0.68, bench 0.61 |
+| 4 | Weight vs earlier best | about 0.72 up to 95%, 0.67 at 100%, 0.60 at 110% |
+| 5 | Earlier make rate | 0.60 (50%) → 0.73 (90%+) |
+| 6 | Misses earlier in the meet | 0.695 (none) → 0.61 (two) → 0.53 (five) |
+| – | Sex, drug-tested, number of earlier meets | under 1% of importance each |
+
+Details: [notebooks/08_explainability.ipynb](notebooks/08_explainability.ipynb), [results/feature_importance.csv](results/feature_importance.csv)
+
 ## Attempt selection example
 
 A raw 83 kg lifter whose best squat at earlier meets is 200 kg has just made 195 kg on his second attempt:
@@ -87,7 +101,8 @@ powerlifting-attempt-success/
 │   ├── 04_logistic_regression.ipynb
 │   ├── 05_tree_models.ipynb
 │   ├── 06_imbalance_comparison.ipynb
-│   └── 07_threshold_and_use_cases.ipynb
+│   ├── 07_threshold_and_use_cases.ipynb
+│   └── 08_explainability.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
@@ -97,7 +112,8 @@ powerlifting-attempt-success/
 │   ├── threshold.json
 │   ├── risk_flagging.csv
 │   ├── calibration.csv
-│   └── attempt_examples.csv
+│   ├── attempt_examples.csv
+│   └── feature_importance.csv
 ├── src/
 │   ├── clean.py
 │   └── prep.py
@@ -109,6 +125,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 13. Explainability | 2026-11-03 | `notebooks/08_explainability.ipynb`: feature importance, partial dependence (numeric and categorical), SHAP with `TreeExplainer`, one attempt explained |
 | 12. Threshold & use cases | 2026-11-03 | `notebooks/07_threshold_and_use_cases.ipynb`: threshold chosen on training data, share of misses caught by flagging the riskiest attempts, predicted vs actual table, `attempt_options()` demo |
 | 11. Imbalance comparison | 2026-11-03 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTE |
 | 10. Tree models | 2026-11-03 | `notebooks/05_tree_models.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters, overfitting check |
@@ -122,7 +139,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 13: explainability.
+**Next:** stage 14: results & recommendations.
 
 ## How to run
 
