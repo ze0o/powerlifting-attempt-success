@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 2 of 15 complete (Problem statement).
+**Status:** stage 3 of 15 complete (Data overview).
 
 ## Problem statement
 
@@ -35,6 +35,8 @@ powerlifting-attempt-success/
 │   └── README.md            (openpowerlifting.csv and the cache are not committed)
 ├── docs/
 │   └── 01_problem_statement.md
+├── notebooks/
+│   └── 01_data_overview.ipynb
 ├── src/
 │   └── clean.py
 ├── requirements.txt
@@ -45,10 +47,11 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 3. Data overview | 2026-11-03 | `notebooks/01_data_overview.ipynb`: data dictionary, types, nulls, duplicates, hidden codes |
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 3: data overview.
+**Next:** stage 4: eda.
 
 ## How to run
 
