@@ -5,7 +5,20 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 1 of 15 complete (Project setup).
+**Status:** stage 2 of 15 complete (Problem statement).
+
+## Problem statement
+
+> Predict, before an attempt is taken, the probability that it will be made (a good lift), so lifters and coaches can choose
+> attempts with a known risk, and meet evaluators can see which attempts are high-risk.
+
+- **Type:** supervised binary classification
+- **Target:** `made` (made = 1, missed = 0), from the official results (a negative weight = missed)
+- **Audience:** lifters and coaches, meet evaluators and referees, federations
+- **Metrics:** ROC-AUC (main), balanced accuracy, recall / precision / F1 for missed attempts, calibration table
+  (accuracy alone is misleading: always predicting "made" scores 78.1% on the test meets)
+
+Full details: [docs/01_problem_statement.md](docs/01_problem_statement.md)
 
 ## Dataset
 
@@ -20,6 +33,8 @@ risk, and meet evaluators can see which attempts are high-risk.
 powerlifting-attempt-success/
 ├── data/
 │   └── README.md            (openpowerlifting.csv and the cache are not committed)
+├── docs/
+│   └── 01_problem_statement.md
 ├── src/
 │   └── clean.py
 ├── requirements.txt
@@ -30,9 +45,10 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 2: problem statement.
+**Next:** stage 3: data overview.
 
 ## How to run
 
