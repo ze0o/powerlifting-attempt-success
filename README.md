@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 3 of 15 complete (Data overview).
+**Status:** stage 4 of 15 complete (EDA).
 
 ## Problem statement
 
@@ -27,6 +27,23 @@ Full details: [docs/01_problem_statement.md](docs/01_problem_statement.md)
 (one row per squat, bench or deadlift attempt) with 20 features known before the attempt. Result columns (`Best3…Kg`, `TotalKg`,
 `Place`, points) are dropped because they are calculated from the attempts (leakage). Details: [data/README.md](data/README.md)
 
+## Key EDA findings
+
+| Finding | Number |
+| --- | --- |
+| Attempts made | 75.4% |
+| Third attempts made | bench 46.5%, deadlift 57.9%, squat 63.1% (openers 87–95%) |
+| After a missed attempt | 50.1% made (70.9% after a make) |
+| Weight vs the lifter's earlier best | 85.9% made at 90–95% → 67.2% at 100–102.5% → 61.4% at 110%+ |
+| Tiny jumps | 0–2.5% jump: 55.2% vs 5–10%: 75–76% (a sign of a hard previous attempt) |
+| Earlier make rate | 63.0% (≤ 50% before) → 82.2% (> 89% before) |
+| Equipment | raw 77.9% vs single-ply 69.0% |
+| Time drift | 74.6% before 2024 vs 78.1% from 2024 |
+| Duplicate entries | 383,462 rows: same lifter and meet in two divisions |
+| Leakage | best lift = 3rd attempt ⇔ 3rd attempt made (100%) |
+
+Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
+
 ## Repository structure
 
 ```text
@@ -36,7 +53,8 @@ powerlifting-attempt-success/
 ├── docs/
 │   └── 01_problem_statement.md
 ├── notebooks/
-│   └── 01_data_overview.ipynb
+│   ├── 01_data_overview.ipynb
+│   └── 02_eda.ipynb
 ├── src/
 │   └── clean.py
 ├── requirements.txt
@@ -47,11 +65,12 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 4. EDA | 2026-11-03 | `notebooks/02_eda.ipynb`: the six Lightning Talk EDA questions, make rates by feature, time drift, jump-size pattern, leakage check |
 | 3. Data overview | 2026-11-03 | `notebooks/01_data_overview.ipynb`: data dictionary, types, nulls, duplicates, hidden codes |
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 4: eda.
+**Next:** stage 5: target & features.
 
 ## How to run
 
