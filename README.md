@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 9 of 15 complete (Logistic Regression).
+**Status:** stage 10 of 15 complete (Tree models).
 
 ## Problem statement
 
@@ -50,6 +50,9 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Baseline (always made) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.781 |
 | Logistic Regression | 0.50 | 0.763 | 0.587 | 0.221 | 0.569 | 0.318 | 0.792 |
+| Decision Tree | 0.50 | 0.765 | 0.612 | 0.289 | 0.555 | 0.380 | 0.793 |
+| Random Forest | 0.50 | 0.775 | 0.612 | 0.282 | 0.578 | 0.379 | 0.797 |
+| **Gradient Boosting** | 0.50 | **0.776** | 0.618 | 0.297 | 0.575 | 0.391 | 0.798 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 
@@ -68,11 +71,13 @@ powerlifting-attempt-success/
 │   ├── 01_data_overview.ipynb
 │   ├── 02_eda.ipynb
 │   ├── 03_preprocessing_and_baseline.ipynb
-│   └── 04_logistic_regression.ipynb
+│   ├── 04_logistic_regression.ipynb
+│   └── 05_tree_models.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
-│   └── lr_odds_ratios.csv
+│   ├── lr_odds_ratios.csv
+│   └── best_params.json
 ├── src/
 │   ├── clean.py
 │   └── prep.py
@@ -84,6 +89,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 10. Tree models | 2026-11-03 | `notebooks/05_tree_models.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters, overfitting check |
 | 9. Logistic Regression | 2026-11-03 | `notebooks/04_logistic_regression.ipynb`: GridSearchCV on C, odds ratios |
 | 8. Preprocessing pipeline & baseline | 2026-11-03 | `src/prep.py` (date split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline, random vs date split check |
 | 7. Course fit & limitations | 2026-11-03 | `docs/04_course_fit_and_limitations.md`: Lightning Talk checklist, scope vs the course, limitations, open questions |
@@ -94,7 +100,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 10: tree models.
+**Next:** stage 11: imbalance comparison.
 
 ## How to run
 
