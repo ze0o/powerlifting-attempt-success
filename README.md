@@ -5,7 +5,12 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 13 of 15 complete (Explainability).
+**Status:** stage 14 of 15 complete (Results & recommendations).
+
+> **Headline result:** the Gradient Boosting model (ROC-AUC 0.776 on meets from 2024 onward, trained on earlier meets) gives
+> **trustworthy probabilities**: attempts it scores 70–80% were made 76.2% of the time. Flagging the **riskiest 20%** of attempts
+> covers **47% of all misses**, and with the tuned threshold it warns before **2 out of 3 misses**.
+> Recommendations: [docs/05_results_and_recommendations.md](docs/05_results_and_recommendations.md)
 
 ## Problem statement
 
@@ -49,7 +54,7 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | model | threshold | roc auc | balanced accuracy | recall (missed) | precision (missed) | f1 (missed) | accuracy |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Baseline (always made) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.781 |
-| Logistic Regression | 0.50 | 0.763 | 0.587 | 0.221 | 0.569 | 0.318 | 0.792 |
+| Logistic Regression | 0.50 | 0.764 | 0.587 | 0.221 | 0.569 | 0.318 | 0.793 |
 | Decision Tree | 0.50 | 0.765 | 0.612 | 0.289 | 0.555 | 0.380 | 0.793 |
 | Random Forest | 0.50 | 0.775 | 0.612 | 0.282 | 0.578 | 0.379 | 0.797 |
 | **Gradient Boosting** | 0.50 | **0.776** | 0.618 | 0.297 | 0.575 | 0.391 | 0.798 |
@@ -93,7 +98,8 @@ powerlifting-attempt-success/
 │   ├── 01_problem_statement.md
 │   ├── 02_target_and_features.md
 │   ├── 03_preprocessing_plan.md
-│   └── 04_course_fit_and_limitations.md
+│   ├── 04_course_fit_and_limitations.md
+│   └── 05_results_and_recommendations.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
 │   ├── 02_eda.ipynb
@@ -125,6 +131,7 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 14. Results & recommendations | 2026-11-03 | `docs/05_results_and_recommendations.md`: final model, model comparison, value for evaluators, drivers, recommendations, limitations, next steps |
 | 13. Explainability | 2026-11-03 | `notebooks/08_explainability.ipynb`: feature importance, partial dependence (numeric and categorical), SHAP with `TreeExplainer`, one attempt explained |
 | 12. Threshold & use cases | 2026-11-03 | `notebooks/07_threshold_and_use_cases.ipynb`: threshold chosen on training data, share of misses caught by flagging the riskiest attempts, predicted vs actual table, `attempt_options()` demo |
 | 11. Imbalance comparison | 2026-11-03 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTE |
@@ -139,7 +146,7 @@ powerlifting-attempt-success/
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 14: results & recommendations.
+**Next:** stage 15: presentation slides.
 
 ## How to run
 
