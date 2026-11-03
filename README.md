@@ -5,7 +5,7 @@ and on the third attempt only **46.5% of bench presses** are made. Lifters choos
 that gives each planned attempt a **chance of success** before it is taken, so lifters and coaches can choose attempts with a known
 risk, and meet evaluators can see which attempts are high-risk.
 
-**Status:** stage 5 of 15 complete (Target & features).
+**Status:** stage 6 of 15 complete (Preprocessing plan).
 
 ## Problem statement
 
@@ -52,7 +52,8 @@ powerlifting-attempt-success/
 │   └── README.md            (openpowerlifting.csv and the cache are not committed)
 ├── docs/
 │   ├── 01_problem_statement.md
-│   └── 02_target_and_features.md
+│   ├── 02_target_and_features.md
+│   └── 03_preprocessing_plan.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
 │   └── 02_eda.ipynb
@@ -66,13 +67,14 @@ powerlifting-attempt-success/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 6. Preprocessing plan | 2026-11-03 | `docs/03_preprocessing_plan.md`: fixed rules, imputing, bins, encoding, scaling, split, imbalance |
 | 5. Target & features | 2026-11-03 | `docs/02_target_and_features.md`: target choice, leakage decisions, engineered history features |
 | 4. EDA | 2026-11-03 | `notebooks/02_eda.ipynb`: the six Lightning Talk EDA questions, make rates by feature, time drift, jump-size pattern, leakage check |
 | 3. Data overview | 2026-11-03 | `notebooks/01_data_overview.ipynb`: data dictionary, types, nulls, duplicates, hidden codes |
 | 2. Problem statement | 2026-11-03 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-03 | Cleaning and reshaping rules (`src/clean.py`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** stage 6: preprocessing plan.
+**Next:** stage 7: course fit & limitations.
 
 ## How to run
 
